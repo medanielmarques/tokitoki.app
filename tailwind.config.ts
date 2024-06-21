@@ -1,14 +1,41 @@
-import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+/** @type {import('tailwindcss').Config} */
 
-export default {
-  content: ["./src/**/*.tsx"],
+import { default: flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette"
+
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+      animation: {
+        aurora: "aurora 55s linear infinite",
+      },
+      keyframes: {
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
     },
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [
+    addVariablesForColors,
+  ],
+}
+ 
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme("colors"))
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
+  )
+
+  addBase({
+    ":root": newVars,
+  })
+}
