@@ -1,6 +1,8 @@
+import { cn } from "@/utils/cn"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { type ComponentPropsWithoutRef } from "react"
 
 export default function Home() {
   return (
@@ -105,38 +107,41 @@ export default function Home() {
       {/* START FEATURES */}
       {/* START FEATURES */}
       <section id="how-it-works">
-        <FeatureHighlight
-          title="TASK"
-          subtitle="Like you have a full sales and revenue team on your staff."
-          // subtitle="The most amazing subtitle ever."
-          description="The most incredible description of a landing page ever conceived of all times."
-          imageUrl="/test.png"
-          bgColor="bg-rose-100"
-        />
+        <FeatureHighlight.Root className="bg-rose-100">
+          <FeatureHighlight.Description
+            title="TASK"
+            subtitle="The most amazing subtitle ever."
+            description="The most incredible description of a landing page ever conceived of all times."
+          />
+          <FeatureHighlight.Image imageUrl="/test.png" />
+        </FeatureHighlight.Root>
 
-        <FeatureHighlightInverted
-          title="TASK"
-          subtitle="The most amazing subtitle ever."
-          description="The most incredible description of a landing page ever conceived of all times."
-          imageUrl="/test.png"
-          bgColor="bg-rose-200"
-        />
+        <FeatureHighlight.Root className="bg-rose-200">
+          <FeatureHighlight.Image imageUrl="/test.png" />
+          <FeatureHighlight.Description
+            title="TASK"
+            subtitle="The most amazing subtitle ever."
+            description="The most incredible description of a landing page ever conceived of all times."
+          />
+        </FeatureHighlight.Root>
 
-        <FeatureHighlight
-          title="TASK"
-          subtitle="The most amazing subtitle ever."
-          description="The most incredible description of a landing page ever conceived of all times."
-          imageUrl="/test.png"
-          bgColor="bg-blue-100"
-        />
+        <FeatureHighlight.Root className="bg-blue-100">
+          <FeatureHighlight.Description
+            title="TASK"
+            subtitle="The most amazing subtitle ever."
+            description="The most incredible description of a landing page ever conceived of all times."
+          />
+          <FeatureHighlight.Image imageUrl="/test.png" />
+        </FeatureHighlight.Root>
 
-        <FeatureHighlightInverted
-          title="TASK"
-          subtitle="The most amazing subtitle ever."
-          description="The most incredible description of a landing page ever conceived of all times."
-          imageUrl="/test.png"
-          bgColor="bg-blue-200"
-        />
+        <FeatureHighlight.Root className="bg-blue-200">
+          <FeatureHighlight.Image imageUrl="/test.png" />
+          <FeatureHighlight.Description
+            title="TASK"
+            subtitle="The most amazing subtitle ever."
+            description="The most incredible description of a landing page ever conceived of all times."
+          />
+        </FeatureHighlight.Root>
       </section>
       {/* END FEATURES */}
       {/* END FEATURES */}
@@ -144,98 +149,60 @@ export default function Home() {
   )
 }
 
-function FeatureHighlight({
-  title,
-  subtitle,
-  description,
-  imageUrl,
-  bgColor = "inherit",
-}: {
-  title: string
-  subtitle: string
-  description: string
-  imageUrl: string
-  bgColor: string
-}) {
+function FeatureHighlightRoot({
+  children,
+  className,
+}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
-      className={`border-b-2 border-black ${bgColor} px-6 py-8 sm:px-12 sm:py-24 lg:max-w-none`}
+      className={cn(
+        `border-b-2 border-black px-6 py-8 sm:px-12 sm:py-24 lg:max-w-none`,
+        className,
+      )}
     >
-      <div className="just flex items-center justify-center gap-12">
-        <div className="px-0 sm:px-12 md:px-16 lg:px-0">
-          <h4 className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl">
-            {title}
-          </h4>
-
-          <p className="font-inter mb-6 max-w-lg text-xl font-bold sm:mb-10 md:text-3xl">
-            {subtitle}
-          </p>
-
-          <p className="font-inter mb-12 max-w-lg text-xl font-medium md:text-2xl">
-            {description}
-          </p>
-
-          <Link
-            href="https://tally.so/r/meAv8x"
-            target="_blank"
-            title="Waitlist"
-          >
-            <button className="font-inter rounded-md border-2 border-black bg-white px-12 py-4 text-lg font-semibold hover:bg-neutral-50 hover:underline">
-              Join our waitlist
-            </button>
-          </Link>
-        </div>
-
-        <Image src={imageUrl} alt="" width={500} height={500} />
-      </div>
+      <div className="flex items-center justify-center gap-12">{children}</div>
     </div>
   )
 }
 
-function FeatureHighlightInverted({
+function FeatureHighlightDescription({
   title,
   subtitle,
   description,
-  imageUrl,
-  bgColor = "inherit",
 }: {
   title: string
   subtitle: string
   description: string
-  imageUrl: string
-  bgColor: string
 }) {
   return (
-    <div
-      className={`border-b-2 ${bgColor} border-black px-6 py-8 sm:px-12 sm:py-24`}
-    >
-      <div className="just flex items-center justify-center gap-12">
-        <Image src={imageUrl} alt="" width={500} height={500} />
+    <div className="px-0 sm:px-12 md:px-16 lg:px-0">
+      <h4 className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl">
+        {title}
+      </h4>
 
-        <div className="px-0 sm:px-12 md:px-16 lg:px-0">
-          <h4 className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl">
-            {title}
-          </h4>
+      <p className="font-inter mb-6 max-w-lg text-xl font-bold sm:mb-10 md:text-3xl">
+        {subtitle}
+      </p>
 
-          <p className="font-inter mb-6 max-w-lg text-xl font-bold sm:mb-10 md:text-3xl">
-            {subtitle}
-          </p>
+      <p className="font-inter mb-12 max-w-lg text-xl font-medium md:text-2xl">
+        {description}
+      </p>
 
-          <p className="font-inter mb-12 max-w-lg text-xl font-medium md:text-2xl">
-            {description}
-          </p>
-
-          <Link
-            href="https://tally.so/r/meAv8x"
-            target="_blank"
-            title="Waitlist"
-          >
-            <button className="font-inter rounded-md border-2 border-black bg-white px-12 py-4 text-lg font-semibold hover:bg-neutral-50 hover:underline">
-              Join our waitlist
-            </button>
-          </Link>
-        </div>
-      </div>
+      <Link href="https://tally.so/r/meAv8x" target="_blank" title="Waitlist">
+        <button className="font-inter rounded-md border-2 border-black bg-white px-12 py-4 text-lg font-semibold hover:bg-neutral-50 hover:underline">
+          Join our waitlist
+        </button>
+      </Link>
     </div>
   )
+}
+
+function FeatureHighlightImage({ imageUrl }: { imageUrl: string }) {
+  return <Image src={imageUrl} alt="" width={500} height={500} />
+}
+
+const FeatureHighlight = {
+  Root: FeatureHighlightRoot,
+  Description: FeatureHighlightDescription,
+  Image: FeatureHighlightImage,
 }
