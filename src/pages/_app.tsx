@@ -1,6 +1,8 @@
 import "@/styles/globals.css"
 import { type AppType } from "next/app"
+import { Inter } from "next/font/google"
 import localFont from "next/font/local"
+import Head from "next/head"
 
 const clashDipslay = localFont({
   src: [
@@ -31,15 +33,24 @@ const clashDipslay = localFont({
     },
   ],
 })
-console.log(clashDipslay.className)
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+})
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
-      <head>
+      <Head>
         <title>Toki: Gamified tasks w/ rewards</title>
-      </head>
+      </Head>
       <main className={clashDipslay.className}>
+        <style jsx global>{`
+          .font-inter {
+            font-family: ${inter.style.fontFamily};
+          }
+        `}</style>
         <Component {...pageProps} />
       </main>
     </>
