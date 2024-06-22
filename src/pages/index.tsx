@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <main>
       {/* START NAV MENU */}
-      {/* START NAV MENU */}
       <nav className="relative p-5">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="/" title="Toki">
@@ -37,11 +36,10 @@ export default function Home() {
         </div>
       </nav>
       {/* END NAV MENU */}
-      {/* END NAV MENU */}
 
       {/* START HEADLINE / CTA */}
-      {/* START HEADLINE / CTA */}
       <motion.section
+        id="headline-cta"
         initial={{ opacity: 0.0, y: -60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
@@ -94,17 +92,18 @@ export default function Home() {
                 </button>
               </Link>
 
-              <p className="mx-auto mt-2 max-w-3xl text-center text-lg font-medium text-gray-500">
-                Lifetime license for the first 100 customers
+              <p
+                style={{ wordSpacing: "2px" }}
+                className="mx-auto mt-2 max-w-3xl text-center text-lg font-medium text-gray-500"
+              >
+                Lifetime license (and 50% OFF) for the first 100 customers
               </p>
             </div>
           </div>
         </div>
       </motion.section>
       {/* END HEADLINE / CTA */}
-      {/* END HEADLINE / CTA */}
 
-      {/* START FEATURES */}
       {/* START FEATURES */}
       <section id="how-it-works">
         <FeatureHighlight.Root className="bg-rose-100">
@@ -144,7 +143,12 @@ export default function Home() {
         </FeatureHighlight.Root>
       </section>
       {/* END FEATURES */}
-      {/* END FEATURES */}
+
+      {/* START FAQ */}
+      <section id="faq">
+        <FAQ />
+      </section>
+      {/* END FAQ */}
     </main>
   )
 }
@@ -205,4 +209,93 @@ const FeatureHighlight = {
   Root: FeatureHighlightRoot,
   Description: FeatureHighlightDescription,
   Image: FeatureHighlightImage,
+}
+
+const questions = [
+  {
+    question: "What is This?",
+    answer:
+      "This is a platform that allows you to create and manage tasks and rewards.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "This is a platform that allows you to create and manage tasks and rewards.",
+  },
+  {
+    question: "What is This?",
+    answer:
+      "This is a platform that allows you to create and manage tasks and rewards.",
+  },
+]
+
+function FAQ() {
+  return (
+    <div className="font-inter relative mt-8 w-full bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
+      <div className="mx-auto px-5">
+        <div className="flex flex-col items-center">
+          <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-4xl">
+            Frequenty Asked Questions
+          </h2>
+          <p className="mt-3 text-neutral-500">
+            Have another question? Contact me on{" "}
+            <Link
+              className="text-neutral-700 underline"
+              href="https://x.com/medanielmarques"
+              target="_blank"
+              title="Twitter"
+            >
+              Twitter
+            </Link>{" "}
+            or by{" "}
+            <Link
+              className="text-neutral-700 underline"
+              href="mailto:daniel.marques.contact@gmail.com"
+              target="_blank"
+              title="email"
+            >
+              email
+            </Link>
+            .
+          </p>
+        </div>
+
+        <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
+          {questions.map((q) => (
+            <FAQItem key={q.question} question={q.question} answer={q.answer} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <div className="py-5">
+      <details className="group">
+        <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+          <span> {question}</span>
+          <span className="transition group-open:rotate-180">
+            <svg
+              fill="none"
+              height="24"
+              shape-rendering="geometricPrecision"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M6 9l6 6 6-6"></path>
+            </svg>
+          </span>
+        </summary>
+        <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+          {answer}
+        </p>
+      </details>
+    </div>
+  )
 }
