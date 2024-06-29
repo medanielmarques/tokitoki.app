@@ -1,5 +1,4 @@
 import { cn } from "@/utils/cn"
-import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { type ComponentPropsWithoutRef } from "react"
@@ -38,116 +37,105 @@ export default function Home() {
       {/* END NAV MENU */}
 
       {/* START HEADLINE / CTA */}
-      <motion.section
-        id="headline-cta"
-        initial={{ opacity: 0.0, y: -60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-      >
-        <div className="relative flex h-[920px] items-center border-b-2 border-t-2 border-black bg-rose-50">
-          <div className="mx-auto flex flex-col items-center justify-center gap-12">
-            <div>
-              <h1
-                style={{ wordSpacing: "15px" }}
-                className="w-full text-center text-8xl font-black uppercase leading-tight"
-              >
-                Gamify your tasks.
-              </h1>
+      <div className="relative flex h-[920px] items-center border-b-2 border-t-2 border-black bg-rose-50">
+        <div className="mx-auto flex flex-col items-center justify-center gap-12">
+          <div>
+            <h1
+              style={{ wordSpacing: "15px" }}
+              className="w-full text-center text-8xl font-black uppercase leading-tight"
+            >
+              Gamify your tasks.
+            </h1>
 
-              <h1
-                style={{ wordSpacing: "15px" }}
-                className="w-full text-center text-8xl font-black uppercase leading-tight"
-              >
-                <span>Get</span>{" "}
-                <span className="bg-rose-300 px-6 py-1 text-8xl font-black uppercase leading-tight text-black">
-                  rewards.
-                </span>
-              </h1>
-            </div>
-
-            <div className="font-inter mx-auto flex flex-col items-center gap-2 text-2xl font-medium text-gray-500">
-              <span style={{ wordSpacing: "2px" }} className="text-center">
-                Increase your{" "}
-                <span className="text-gray-600 underline">motivation</span> and{" "}
-                <span className="text-gray-600 underline">productivity</span> by
-                competing with your best self.
+            <h1
+              style={{ wordSpacing: "15px" }}
+              className="w-full text-center text-8xl font-black uppercase leading-tight"
+            >
+              <span>Get</span>{" "}
+              <span className="bg-rose-300 px-6 py-1 text-8xl font-black uppercase leading-tight text-black">
+                rewards.
               </span>
-            </div>
+            </h1>
+          </div>
 
-            <div className="flex flex-col items-center gap-1">
-              <Link
-                href="https://tally.so/r/meAv8x"
-                target="_blank"
-                title="Waitlist"
-              >
-                <button
-                  style={{ wordSpacing: "5px" }}
-                  className="rounded-md border-2 bg-black px-12 py-4 text-lg font-semibold uppercase text-white hover:bg-neutral-950 hover:underline"
-                >
-                  Join our waitlist
-                </button>
-              </Link>
+          <div className="font-inter mx-auto flex flex-col items-center gap-2 text-2xl font-medium text-gray-500">
+            <span className="text-center">
+              Increase your{" "}
+              <span className="text-gray-600 underline">motivation</span> and{" "}
+              <span className="text-gray-600 underline">productivity</span> by
+              competing with your best self.
+            </span>
+          </div>
 
-              <p
-                style={{ wordSpacing: "2px" }}
-                className="mx-auto mt-2 max-w-3xl text-center text-lg font-medium text-gray-500"
+          <div className="flex flex-col items-center gap-1">
+            <Link
+              href="https://tally.so/r/meAv8x"
+              target="_blank"
+              title="Waitlist"
+            >
+              <button
+                style={{ wordSpacing: "5px" }}
+                className="rounded-md bg-black px-12 py-4 text-lg font-semibold uppercase text-white hover:bg-neutral-950 hover:underline"
               >
-                Lifetime license (and 50% OFF) for the first 100 customers
-              </p>
-            </div>
+                Join our waitlist
+              </button>
+            </Link>
+
+            <p
+              style={{ wordSpacing: "2px" }}
+              className="mx-auto mt-2 max-w-3xl text-center text-lg font-medium text-gray-500"
+            >
+              Lifetime license (and 50% OFF) for the first 100 customers
+            </p>
           </div>
         </div>
-      </motion.section>
+      </div>
       {/* END HEADLINE / CTA */}
 
-      {/* START FEATURES */}
+      {/* START MAIN FEATURES */}
       <section id="how-it-works">
         <FeatureHighlight.Root className="bg-rose-100">
           <FeatureHighlight.Description
-            title="TASK"
-            subtitle="The most amazing subtitle ever."
-            description="The most incredible description of a landing page ever conceived of all times."
+            title="Stay Driven"
+            subtitle="Build momentum with daily streaks."
+            description="Keep your streak going with at least one full timer run. Finish full routines for bigger rewards."
           />
-          <FeatureHighlight.Image imageUrl="/test.png" />
+          <StayDrivenImage />
         </FeatureHighlight.Root>
 
         <FeatureHighlight.Root className="bg-rose-200">
-          <FeatureHighlight.Image imageUrl="/test.png" />
+          <EarnRewardsImage />
           <FeatureHighlight.Description
-            title="TASK"
-            subtitle="The most amazing subtitle ever."
-            description="The most incredible description of a landing page ever conceived of all times."
+            title="Earn Rewards"
+            subtitle="Unlock achievements and benefits."
+            description="Accumulate XP points and move through divisions. Access exclusive Notion templates. Achieve goals to earn free or discounted productivity resources. Customize the app as you reach milestones."
           />
         </FeatureHighlight.Root>
 
-        <FeatureHighlight.Root className="bg-blue-100">
+        <FeatureHighlight.Root className="bg-rose-300">
           <FeatureHighlight.Description
-            title="TASK"
-            subtitle="The most amazing subtitle ever."
-            description="The most incredible description of a landing page ever conceived of all times."
+            title="Compete and Advance"
+            subtitle="Push limits with solo and group challenges."
+            description="Break your own records. Join productivity challenges with friends. Track your progress and celebrate successes."
           />
-          <FeatureHighlight.Image imageUrl="/test.png" />
-        </FeatureHighlight.Root>
-
-        <FeatureHighlight.Root className="bg-blue-200">
-          <FeatureHighlight.Image imageUrl="/test.png" />
-          <FeatureHighlight.Description
-            title="TASK"
-            subtitle="The most amazing subtitle ever."
-            description="The most incredible description of a landing page ever conceived of all times."
-          />
+          <CompeteAndAdvanceImage />
         </FeatureHighlight.Root>
       </section>
-      {/* END FEATURES */}
+      {/* END MAIN FEATURES */}
+
+      {/* START OTHER FEATURES */}
+      <section
+        id="other-features"
+        className="flex items-center justify-center p-12"
+      >
+        <OtherFeatures />
+      </section>
+      {/* END OTHER FEATURES */}
 
       {/* START FAQ */}
-      <section id="faq">
+      {/* <section id="faq">
         <FAQ />
-      </section>
+      </section> */}
       {/* END FAQ */}
     </main>
   )
@@ -164,7 +152,7 @@ function FeatureHighlightRoot({
         className,
       )}
     >
-      <div className="flex items-center justify-center gap-12">{children}</div>
+      <div className="flex items-center justify-center gap-36">{children}</div>
     </div>
   )
 }
@@ -180,40 +168,65 @@ function FeatureHighlightDescription({
 }) {
   return (
     <div className="px-0 sm:px-12 md:px-16 lg:px-0">
-      <h4 className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl">
+      <h4
+        style={{ wordSpacing: "5px" }}
+        className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl"
+      >
         {title}
       </h4>
 
-      <p className="font-inter mb-6 max-w-lg text-xl font-bold sm:mb-10 md:text-3xl">
+      <p className="font-inter mb-6 max-w-xl text-xl font-bold sm:mb-10 md:text-3xl">
         {subtitle}
       </p>
 
-      <p className="font-inter mb-12 max-w-lg text-xl font-medium md:text-2xl">
+      <p className="font-inter mb-12 max-w-xl text-xl font-medium md:text-2xl">
         {description}
       </p>
-
-      <Link href="https://tally.so/r/meAv8x" target="_blank" title="Waitlist">
-        <button className="font-inter rounded-md border-2 border-black bg-white px-12 py-4 text-lg font-semibold hover:bg-neutral-50 hover:underline">
-          Join our waitlist
-        </button>
-      </Link>
     </div>
   )
 }
 
-function FeatureHighlightImage({ imageUrl }: { imageUrl: string }) {
-  return <Image src={imageUrl} alt="" width={500} height={500} />
+function StayDrivenImage() {
+  return (
+    <Image
+      src="/images/stay-driven.png"
+      alt="Stay driven"
+      width={800}
+      height={400}
+    />
+  )
+}
+
+function EarnRewardsImage() {
+  return (
+    <Image
+      src="/images/earn-rewards.png"
+      alt="Earn rewards"
+      width={800}
+      height={400}
+    />
+  )
+}
+
+function CompeteAndAdvanceImage() {
+  return (
+    <Image
+      src="/images/compete-and-advance.png"
+      alt="Compete and advance"
+      width={800}
+      height={400}
+    />
+  )
 }
 
 const FeatureHighlight = {
   Root: FeatureHighlightRoot,
   Description: FeatureHighlightDescription,
-  Image: FeatureHighlightImage,
 }
 
-const questions = [
+const questionsFAQ = [
   {
-    question: "What is This?",
+    question: "What is This thing?",
     answer:
       "This is a platform that allows you to create and manage tasks and rewards.",
   },
@@ -231,7 +244,7 @@ const questions = [
 
 function FAQ() {
   return (
-    <div className="font-inter relative mt-8 w-full bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
+    <div className="font-inter font-inter relative mt-8 w-full px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
       <div className="mx-auto px-5">
         <div className="flex flex-col items-center">
           <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-4xl">
@@ -261,7 +274,7 @@ function FAQ() {
         </div>
 
         <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
-          {questions.map((q) => (
+          {questionsFAQ.map((q) => (
             <FAQItem key={q.question} question={q.question} answer={q.answer} />
           ))}
         </div>
@@ -280,11 +293,11 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             <svg
               fill="none"
               height="24"
-              shape-rendering="geometricPrecision"
+              shapeRendering="geometricPrecision"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
               viewBox="0 0 24 24"
               width="24"
             >
@@ -296,6 +309,73 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           {answer}
         </p>
       </details>
+    </div>
+  )
+}
+
+const otherFeatures = [
+  {
+    title: "Notifications",
+    description: "Get notified when the timer ends on your phone or desktop.",
+  },
+  {
+    title: "Throwaway Timer",
+    description: "One-time timer for single tasks without changing settings.",
+  },
+  {
+    title: "Collaborative Sessions",
+    description: "Share sessions to work together faster.",
+  },
+  {
+    title: "Command Center",
+    description: "Manage the app with a command center (CTRL+K) and shortcuts.",
+  },
+  {
+    title: "Timer adjustments",
+    description: "Timers adjust based on your average overtime.",
+  },
+  {
+    title: "Built-in white noise",
+    description: "Ambient sounds to help you focus.",
+  },
+]
+
+function OtherFeatures() {
+  return (
+    <div className="font-inter pb-6">
+      <div className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+        <div className="container mx-auto p-6 px-6">
+          <div className="mb-16 text-center">
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl">
+              And much more...
+            </p>
+          </div>
+
+          <div className="my-12 flex flex-wrap">
+            {otherFeatures.map(({ title, description }, index) => (
+              <div
+                key={index}
+                className={`w-full ${index < 3 ? "md:border-b" : ""} p-8 md:w-1/2 lg:w-1/3 ${index === 2 || index === 5 ? "md:border-r-0" : "md:border-r"}`}
+              >
+                <div className="mb-6 flex items-center gap-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 32 32"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    className="h-6 w-6 text-indigo-500"
+                  >
+                    <path d="M16 3C8.8 3 3 8.8 3 16s5.8 13 13 13 13-5.8 13-13c0-1.398-.188-2.793-.688-4.094L26.688 13.5c.2.8.313 1.602.313 2.5 0 6.102-4.898 11-11 11S5 22.102 5 16 9.898 5 16 5c3 0 5.695 1.195 7.594 3.094L25 6.688C22.7 4.386 19.5 3 16 3zm11.281 4.281L16 18.563l-4.281-4.282-1.438 1.438 5 5 .719.687.719-.687 12-12z"></path>
+                  </svg>
+                  <div className="text-xl">{title}</div>
+                </div>
+                <p className="leading-loose text-gray-500">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
