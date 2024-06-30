@@ -3,6 +3,8 @@ import { type AppType } from "next/app"
 import { Inter } from "next/font/google"
 import localFont from "next/font/local"
 import Head from "next/head"
+import posthog from "posthog-js"
+import { PostHogProvider } from "posthog-js/react"
 
 const clashDipslay = localFont({
   src: [
@@ -39,9 +41,19 @@ const inter = Inter({
   weight: ["400", "700"],
 })
 
+const isProduction = process.env.NODE_ENV === "production"
+const shouldTrackAnalytics = isProduction && typeof window !== "undefined"
+
+if (shouldTrackAnalytics) {
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+    api_host: "/ingest",
+    ui_host: "https://us.posthog.com",
+  })
+}
+
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <>
+    <PostHogProvider>
       <Head>
         <title>Toki: Gamified tasks w/ rewards</title>
       </Head>
@@ -50,10 +62,16 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           .font-inter {
             font-family: ${inter.style.fontFamily};
           }
+
+          .headline-word-spacing {
+            @media (min-width: 768px) {
+              word-spacing: 15px;
+            }
+          }
         `}</style>
         <Component {...pageProps} />
       </main>
-    </>
+    </PostHogProvider>
   )
 }
 
