@@ -11,38 +11,40 @@ export default function Home() {
 
   return (
     <main>
-      {/* START NAV MENU */}
-      <nav className="relative p-5">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/" title="Toki">
-            <span className="text-xl font-semibold">Toki</span>
-          </Link>
-
-          <div className="flex items-center gap-4 font-medium text-gray-700">
-            <Link
-              style={{ wordSpacing: "3px" }}
-              className="hidden rounded-lg px-4 py-3 hover:underline md:block"
-              href="#how-it-works"
-              title="How it works"
-            >
-              How it works
+      <section id="header">
+        <nav className="relative p-5">
+          <div className="mx-auto flex max-w-7xl items-center justify-between">
+            <Link href="/" title="Toki">
+              <span className="text-xl font-semibold">Toki</span>
             </Link>
 
-            <Link
-              className="rounded-lg bg-black px-4 py-3 font-semibold text-white hover:underline"
-              href="https://tally.so/r/meAv8x"
-              target="_blank"
-              title="Waitlist"
-            >
-              Waitlist
-            </Link>
+            <div className="flex items-center gap-4 font-medium text-gray-700">
+              <Link
+                style={{ wordSpacing: "3px" }}
+                className="hidden rounded-lg px-4 py-3 hover:underline md:block"
+                href="#how-it-works"
+                title="How it works"
+              >
+                How it works
+              </Link>
+
+              <Link
+                className="rounded-lg bg-black px-4 py-3 font-semibold text-white hover:underline"
+                href="https://tally.so/r/meAv8x"
+                target="_blank"
+                title="Waitlist"
+              >
+                Waitlist
+              </Link>
+            </div>
           </div>
-        </div>
-      </nav>
-      {/* END NAV MENU */}
+        </nav>
+      </section>
 
-      {/* START HEADLINE / CTA */}
-      <div className="relative flex h-[560px] items-center border-b-2 border-t-2 border-black bg-rose-50 md:h-[920px]">
+      <section
+        id="headline-and-cta  "
+        className="relative flex h-[560px] items-center border-b-2 border-t-2 border-black bg-rose-50 md:h-[920px]"
+      >
         <div className="mx-auto flex flex-col items-center justify-center gap-12">
           <div>
             <h1 className="headline-word-spacing w-full text-center text-3xl font-black uppercase leading-tight md:text-6xl xl:text-8xl">
@@ -77,10 +79,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div>
-      {/* END HEADLINE / CTA */}
+      </section>
 
-      {/* START MAIN FEATURES */}
       <section id="how-it-works">
         <FeatureHighlight.Root className="bg-rose-100">
           <FeatureHighlight.Description
@@ -121,21 +121,54 @@ export default function Home() {
           />
         </FeatureHighlight.Root>
       </section>
-      {/* END MAIN FEATURES */}
 
-      {/* START OTHER FEATURES */}
       <section
         id="other-features"
         className="mt-4 flex items-center justify-center md:mt-12"
       >
         <OtherFeatures />
       </section>
-      {/* END OTHER FEATURES */}
 
-      <div className="mb-36 flex items-center justify-center">
-        <WaitlistCTA />
-      </div>
+      <section id="footer">
+        <div className="flex h-80 flex-col items-center justify-center gap-6 border-t-2 border-black bg-rose-100">
+          <WaitlistCTA />
+          <TwitterLink />
+        </div>
+      </section>
     </main>
+  )
+}
+
+function TwitterLink() {
+  return (
+    <Link
+      onClick={() => captureEvent("Clicked on my twitter link [Footer]")}
+      href="https://dub.sh/danielx"
+      target="_blank"
+      className="flex w-[263px] items-center justify-center gap-2 rounded-md bg-white py-4 transition-colors hover:bg-gray-50 hover:underline md:w-[283px]"
+      title="Twitter"
+    >
+      <svg
+        width="16"
+        height="16"
+        xmlns="http://www.w3.org/2000/svg"
+        shapeRendering="geometricPrecision"
+        textRendering="geometricPrecision"
+        imageRendering="optimizeQuality"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        viewBox="0 0 512 462.799"
+      >
+        <path
+          fill="#000"
+          fillRule="nonzero"
+          d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"
+        />
+      </svg>
+      <span className="font-inter text-lg font-bold text-gray-600">
+        Twitter
+      </span>
+    </Link>
   )
 }
 
