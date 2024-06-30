@@ -1,8 +1,6 @@
+import { FeatureHighlight } from "@/components/feature-highlight"
 import { OtherFeatures } from "@/components/other-features"
-import { cn } from "@/utils/cn"
-import Image from "next/image"
 import Link from "next/link"
-import { type ComponentPropsWithoutRef } from "react"
 
 export default function Home() {
   return (
@@ -95,11 +93,19 @@ export default function Home() {
             subtitle="Build momentum with daily streaks."
             description="Keep your streak going with at least one full timer run. Finish full routines for bigger rewards."
           />
-          <StayDrivenImage />
+
+          <FeatureHighlight.Image
+            src="/images/stay-driven.png"
+            alt="Stay driven"
+          />
         </FeatureHighlight.Root>
 
         <FeatureHighlight.Root className="bg-rose-200" invertFlex>
-          <EarnRewardsImage />
+          <FeatureHighlight.Image
+            src="/images/earn-rewards.png"
+            alt="Earn rewards"
+          />
+
           <FeatureHighlight.Description
             title="Earn Rewards"
             subtitle="Unlock achievements and benefits."
@@ -113,7 +119,11 @@ export default function Home() {
             subtitle="Push limits with solo and group challenges."
             description="Break your own records. Join productivity challenges with friends. Track your progress and celebrate successes."
           />
-          <CompeteAndAdvanceImage />
+
+          <FeatureHighlight.Image
+            src="/images/compete-and-advance.png"
+            alt="Compete and advance"
+          />
         </FeatureHighlight.Root>
       </section>
       {/* END MAIN FEATURES */}
@@ -126,189 +136,6 @@ export default function Home() {
         <OtherFeatures />
       </section>
       {/* END OTHER FEATURES */}
-
-      {/* START FAQ */}
-      {/* <section id="faq">
-        <FAQ />
-      </section> */}
-      {/* END FAQ */}
     </main>
-  )
-}
-
-const FeatureHighlight = {
-  Root: FeatureHighlightRoot,
-  Description: FeatureHighlightDescription,
-}
-
-function FeatureHighlightRoot({
-  children,
-  className,
-  invertFlex = false,
-}: ComponentPropsWithoutRef<"div"> & { invertFlex?: boolean }) {
-  return (
-    <div
-      className={cn(
-        `border-b-2 border-black px-6 py-8 sm:px-12 sm:py-24`,
-        className,
-      )}
-    >
-      <div
-        className={`flex ${invertFlex ? "flex-col-reverse" : "flex-col"} items-center justify-center xl:flex-row xl:gap-36`}
-      >
-        {children}
-      </div>
-    </div>
-  )
-}
-
-function FeatureHighlightDescription({
-  title,
-  subtitle,
-  description,
-}: {
-  title: string
-  subtitle: string
-  description: string
-}) {
-  return (
-    <div className="px-0 sm:px-12 md:px-16 lg:px-0">
-      <h4
-        style={{ wordSpacing: "5px" }}
-        className="mx-auto mb-2 max-w-4xl text-left text-3xl font-black uppercase md:text-5xl"
-      >
-        {title}
-      </h4>
-
-      <p className="font-inter mb-6 max-w-xl text-xl font-bold sm:mb-10 md:text-3xl">
-        {subtitle}
-      </p>
-
-      <p className="font-inter mb-12 max-w-xl text-xl font-medium md:text-2xl">
-        {description}
-      </p>
-    </div>
-  )
-}
-
-function StayDrivenImage() {
-  return (
-    <Image
-      src="/images/stay-driven.png"
-      alt="Stay driven"
-      width={600}
-      height={400}
-    />
-  )
-}
-
-function EarnRewardsImage() {
-  return (
-    <Image
-      src="/images/earn-rewards.png"
-      alt="Earn rewards"
-      width={600}
-      height={400}
-    />
-  )
-}
-
-function CompeteAndAdvanceImage() {
-  return (
-    <Image
-      src="/images/compete-and-advance.png"
-      alt="Compete and advance"
-      width={600}
-      height={400}
-    />
-  )
-}
-
-const questionsFAQ = [
-  {
-    question: "What is This thing?",
-    answer:
-      "This is a platform that allows you to create and manage tasks and rewards.",
-  },
-  {
-    question: "How do I get started?",
-    answer:
-      "This is a platform that allows you to create and manage tasks and rewards.",
-  },
-  {
-    question: "What is This?",
-    answer:
-      "This is a platform that allows you to create and manage tasks and rewards.",
-  },
-]
-
-function FAQ() {
-  return (
-    <div className="font-inter font-inter relative mt-8 w-full px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
-      <div className="mx-auto px-5">
-        <div className="flex flex-col items-center">
-          <h2 className="mt-5 text-center text-3xl font-bold tracking-tight md:text-4xl">
-            Frequenty Asked Questions
-          </h2>
-          <p className="mt-3 text-neutral-500">
-            Have another question? Contact me on{" "}
-            <Link
-              className="text-neutral-700 underline"
-              href="https://x.com/medanielmarques"
-              target="_blank"
-              title="Twitter"
-            >
-              Twitter
-            </Link>{" "}
-            or by{" "}
-            <Link
-              className="text-neutral-700 underline"
-              href="mailto:daniel.marques.contact@gmail.com"
-              target="_blank"
-              title="email"
-            >
-              email
-            </Link>
-            .
-          </p>
-        </div>
-
-        <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
-          {questionsFAQ.map((q) => (
-            <FAQItem key={q.question} question={q.question} answer={q.answer} />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  return (
-    <div className="py-5">
-      <details className="group">
-        <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-          <span> {question}</span>
-          <span className="transition group-open:rotate-180">
-            <svg
-              fill="none"
-              height="24"
-              shapeRendering="geometricPrecision"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
-          </span>
-        </summary>
-        <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
-          {answer}
-        </p>
-      </details>
-    </div>
   )
 }
