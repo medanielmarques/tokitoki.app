@@ -1,8 +1,14 @@
 import { FeatureHighlight } from "@/components/feature-highlight"
 import { OtherFeatures } from "@/components/other-features"
+import {
+  captureEvent,
+  useUserScrolledTheEntireLandingPage,
+} from "@/lib/analytics"
 import Link from "next/link"
 
 export default function Home() {
+  useUserScrolledTheEntireLandingPage()
+
   return (
     <main>
       {/* START NAV MENU */}
@@ -61,18 +67,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-1">
-            <Link
-              href="https://tally.so/r/meAv8x"
-              target="_blank"
-              title="Waitlist"
-            >
-              <button
-                style={{ wordSpacing: "5px" }}
-                className="rounded-md bg-black px-12 py-4 font-semibold uppercase text-white hover:bg-neutral-950 hover:underline md:text-lg"
-              >
-                Join our waitlist
-              </button>
-            </Link>
+            <WaitlistCTA />
 
             <p
               style={{ wordSpacing: "2px" }}
@@ -131,11 +126,33 @@ export default function Home() {
       {/* START OTHER FEATURES */}
       <section
         id="other-features"
-        className="flex items-center justify-center p-12"
+        className="mt-4 flex items-center justify-center md:mt-12"
       >
         <OtherFeatures />
       </section>
       {/* END OTHER FEATURES */}
+
+      <div className="mb-36 flex items-center justify-center">
+        <WaitlistCTA />
+      </div>
     </main>
+  )
+}
+
+function WaitlistCTA() {
+  return (
+    <Link
+      onClick={() => captureEvent("Waitlist CTA Clicked")}
+      href="https://tally.so/r/meAv8x"
+      target="_blank"
+      title="Waitlist"
+    >
+      <button
+        style={{ wordSpacing: "5px" }}
+        className="rounded-md bg-black px-12 py-4 font-semibold uppercase text-white hover:bg-neutral-950 hover:underline md:text-lg"
+      >
+        Join our waitlist
+      </button>
+    </Link>
   )
 }

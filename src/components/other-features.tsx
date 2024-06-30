@@ -27,7 +27,7 @@ const otherFeatures = [
 
 export function OtherFeatures() {
   return (
-    <section className="font-inter pb-6">
+    <section className="font-inter">
       <div className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
         <div className="container mx-auto p-6 px-6">
           <div className="mb-16 text-center">
