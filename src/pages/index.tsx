@@ -132,7 +132,7 @@ export default function Home() {
       <section id="footer">
         <div className="flex h-80 flex-col items-center justify-center gap-6 border-t-2 border-black bg-rose-100">
           <WaitlistCTA />
-          <TwitterLink />
+          {/* <TwitterLink /> */}
         </div>
       </section>
     </main>
